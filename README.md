@@ -1,27 +1,116 @@
 # LOCAL FINDS
 
-E-Commerce Mobile Application 
+**E-Commerce Mobile Application**
 
-# TUGAS 7
+---
 
-## Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
-### Stateless Widget
-**Stateless Widget** adalah widget yang tidak memiliki state atau status yang dapat berubah. Ini berarti bahwa once widget ini dibuat, tampilan dan sifatnya tetap konstan selama siklus hidupnya. Stateless widget hanya dibangun sekali dan tidak akan diperbarui kecuali jika parent widget-nya diubah.
-### Stateful Widget
-**Stateful Widget** adalah widget yang dapat memiliki state yang dapat berubah. Stateful widget dapat memperbarui tampilannya sendiri berdasarkan perubahan state. Ini berguna ketika widget perlu merespons interaksi pengguna atau perubahan data.
-#### Perbedaan utama di antara keduanya terletak pada kemampuan Stateful Widget untuk mengelola dan memperbarui state, menjadikannya sedikit lebih berat dalam hal performa dibandingkan dengan Stateless Widget yang lebih ringan dan efisien.
+## TUGAS 7
 
-## Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
-Dalam proyek ini, saya memanfaatkan berbagai widget Flutter untuk membangun antarmuka pengguna. Pertama, saya menggunakan **MaterialApp** sebagai widget utama yang menyediakan fondasi untuk aplikasi berbasis Material Design, termasuk pengaturan tema dan navigasi global. Di dalamnya, **Scaffold** berfungsi sebagai struktur dasar untuk halaman, menawarkan elemen-elemen UI seperti **AppBar** dan **body**. Di bagian AppBar, saya menambahkan judul aplikasi menggunakan widget **Text**. Untuk mengatur tata letak di body, saya memanfaatkan **Column** dan **Row**, yang memungkinkan penyusunan elemen secara vertikal dan horizontal, serta menggunakan **Padding** untuk memberikan ruang tambahan di sekitar elemen. Selanjutnya, saya mengimplementasikan **GridView** dalam mode count untuk menampilkan tombol-tombol dalam format grid. Setiap tombol diwakili oleh **ItemCard**, yang terdiri dari widget **InkWell** untuk memberikan efek responsif saat diklik, serta **Icon** dan **Text** yang menampilkan ikon dan nama item. **InkWell** berfungsi untuk memberikan efek animasi pada saat tombol ditekan, meningkatkan pengalaman pengguna dengan memberikan umpan balik visual. Selain itu, saya menggunakan **ScaffoldMessenger** untuk menampilkan pesan **SnackBar** sebagai respons ketika tombol ditekan, sehingga memberikan informasi tambahan kepada pengguna tentang interaksi yang mereka lakukan. Pendekatan ini menciptakan antarmuka pengguna yang responsif dan intuitif, meningkatkan interaksi pengguna dengan aplikasi.
+### 1. Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
 
+**Stateless Widget** adalah widget yang tidak memiliki state atau status yang dapat berubah. Artinya, setelah widget ini dibuat, tampilan dan sifatnya tetap konstan selama siklus hidupnya. Stateless widget hanya dibangun sekali dan tidak akan diperbarui kecuali jika parent widget-nya diubah.
 
-##  Apa fungsi dari 'setState()' ? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
-### Fungsi 'setState()' dalam Flutter adalah metode yang digunakan dalam Stateful Widget untuk memberi tahu framework bahwa ada perubahan yang terjadi pada state widget. Ketika setState() dipanggil, Flutter akan memicu proses rebuild pada widget yang bersangkutan, memungkinkan UI untuk diperbarui dan menampilkan informasi terbaru. Ini sangat penting untuk memastikan bahwa antarmuka pengguna mencerminkan status terkini dari data atau variabel yang digunakan dalam widget. Variabel yang terdampak oleh setState() biasanya adalah variabel yang dideklarasikan dalam kelas state (misalnya, dalam _MyStatefulWidgetState). 
+**Stateful Widget** adalah widget yang dapat memiliki state yang dapat berubah. Widget ini memungkinkan perubahan pada tampilan UI berdasarkan perubahan state. Ini berguna ketika widget perlu merespons interaksi pengguna atau perubahan data.
 
-## Jelaskan perbedaan antara const dengan final.
-Dalam Dart, `const` dan `final` adalah dua cara untuk mendeklarasikan variabel yang tidak dapat diubah setelah inisialisasi, tetapi mereka memiliki perbedaan penting. Variabel yang dideklarasikan dengan `const` memiliki nilai yang sudah ditentukan pada waktu kompilasi, artinya nilai tersebut harus diketahui sebelum program dijalankan dan bersifat immutable. Ini memungkinkan Dart melakukan optimasi tertentu, karena objek dengan nilai yang sama akan berbagi instance yang sama. Di sisi lain, `final` memungkinkan inisialisasi dengan nilai yang ditentukan pada waktu runtime, sehingga Anda dapat menetapkan nilai berdasarkan hasil perhitungan atau proses lain yang terjadi saat aplikasi berjalan. Meskipun kedua jenis variabel ini bersifat immutable setelah diinisialisasi, `const` lebih ketat dalam hal penetapan nilai pada waktu kompilasi, sementara `final` memberikan lebih banyak fleksibilitas dalam hal waktu inisialisasi.
+**Perbedaan utama** antara keduanya adalah bahwa **Stateful Widget** dapat mengelola dan memperbarui state, sedangkan **Stateless Widget** tidak memiliki kemampuan tersebut, menjadikannya lebih ringan dan efisien.
 
-## Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
-Pada proyek ini, saya memulai dengan membuat proyek Flutter baru bernama `local_finds` dan melakukan inisialisasi Git untuk mengelola versi kode ke repositori baru bernama `local-finds-mobile`. Setelah itu, saya merapikan struktur proyek dengan membuat file `menu.dart` di dalam direktori `lib`, dan memindahkan kode dari `main.dart` yang berisi kelas `MyHomePage` dan `_MyHomePageState` ke dalam file tersebut. Untuk menghindari error, saya menambahkan import yang sesuai di `main.dart`. Selanjutnya, saya mengubah tema aplikasi menjadi lebih menarik dengan mengatur palet warna di dalam `MaterialApp`. Saya menggunakan `ColorScheme` untuk menyesuaikan warna utama dan sekunder, sehingga tampilan aplikasi menjadi lebih sesuai dengan tema yang diinginkan.
+### 2. Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
 
-Selain itu, saya mengubah `MyHomePage` dari Stateful menjadi Stateless untuk menyederhanakan kode, serta membuat kelas `ItemHomepage` untuk mendefinisikan atribut tombol pada halaman. Saya kemudian membuat daftar item yang akan ditampilkan, termasuk nama dan ikon untuk setiap tombol. Untuk memudahkan tampilan, saya merancang `ItemCard` sebagai widget yang bertugas menampilkan tombol dengan ikon dan menambahkan Snackbar sebagai umpan balik saat tombol ditekan. Terakhir, saya mengintegrasikan `ItemCard` ke dalam `MyHomePage`, menampilkan tombol-tombol tersebut dalam format grid yang responsif. Saya juga memastikan untuk menjalankan perintah `flutter analyze` setelah melakukan semua perubahan, untuk memeriksa apakah ada isu yang terdeteksi dalam proyek, sehingga aplikasi yang saya kembangkan tidak hanya interaktif, tetapi juga berkualitas tinggi dan bebas dari kesalahan. Dengan langkah-langkah ini, saya berhasil membuat antarmuka yang responsif dan interaktif untuk aplikasi, siap untuk fase pengembangan berikutnya.
+Pada proyek **Local Finds**, saya menggunakan berbagai widget Flutter untuk membangun antarmuka pengguna:
+
+- **MaterialApp**: Widget utama yang menyediakan fondasi untuk aplikasi berbasis Material Design, termasuk pengaturan tema dan navigasi global.
+- **Scaffold**: Struktur dasar halaman yang menyediakan elemen-elemen UI seperti **AppBar**, **Drawer**, dan **body**.
+- **Text**: Digunakan untuk menampilkan teks di UI, seperti pada **AppBar** dan tombol.
+- **Column** dan **Row**: Digunakan untuk menyusun elemen-elemen secara vertikal dan horizontal.
+- **Padding**: Memberikan ruang tambahan di sekitar elemen untuk meningkatkan tampilan UI.
+- **GridView**: Digunakan untuk menampilkan tombol-tombol dalam format grid.
+- **ItemCard**: Menyusun tampilan tombol di grid dengan **Icon** dan **Text**.
+- **InkWell**: Memberikan efek responsif saat tombol ditekan.
+- **ScaffoldMessenger**: Menampilkan pesan **SnackBar** sebagai umpan balik ketika tombol ditekan.
+
+### 3. Apa fungsi dari 'setState()'? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+
+Fungsi `setState()` dalam **Stateful Widget** digunakan untuk memberi tahu framework bahwa ada perubahan pada **state** widget. Ketika `setState()` dipanggil, Flutter akan memicu proses **rebuild** widget tersebut, memungkinkan UI untuk diperbarui dan menampilkan informasi terbaru. Variabel yang terdampak oleh `setState()` biasanya adalah variabel yang dideklarasikan dalam kelas **State** (misalnya dalam `_MyHomePageState`), yang digunakan untuk menyimpan data yang mempengaruhi tampilan UI, seperti status, nilai input pengguna, atau data yang diperbarui.
+
+### 4. Jelaskan perbedaan antara const dengan final.
+
+Dalam Dart, `const` dan `final` adalah dua cara untuk mendeklarasikan variabel yang tidak dapat diubah setelah inisialisasi, tetapi dengan perbedaan utama:
+
+- **`const`**: Variabel yang dideklarasikan dengan `const` memiliki nilai yang sudah ditentukan pada waktu kompilasi, dan objek yang didefinisikan dengan `const` bersifat **immutable** dan **singleton**. Ini memungkinkan optimasi karena instance yang sama akan digunakan di seluruh aplikasi.
+  
+- **`final`**: Variabel yang dideklarasikan dengan `final` hanya dapat diinisialisasi sekali dan bersifat **immutable** setelah penetapan, tetapi nilai ini dapat ditentukan pada waktu runtime, tidak harus pada waktu kompilasi.
+
+**Perbedaan utama**: `const` diinisialisasi pada waktu kompilasi, sementara `final` bisa diinisialisasi pada waktu runtime.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
+
+Untuk mengimplementasikan fitur yang diminta, saya mulai dengan membuat proyek Flutter baru bernama **local_finds** dan melakukan inisialisasi Git. Struktur proyek kemudian saya rapikan dengan memindahkan kode dari `main.dart` ke dalam file `menu.dart`. Selanjutnya, saya mengatur tema aplikasi menggunakan `MaterialApp` dan menyesuaikan warna dengan menggunakan `ColorScheme`.
+
+Saya mengubah **`MyHomePage`** dari Stateful menjadi Stateless untuk menyederhanakan kode, serta membuat kelas **`ItemHomepage`** untuk mendefinisikan atribut tombol pada halaman. Daftar item kemudian dibuat dan ditampilkan dalam format **grid** menggunakan **GridView**.
+
+Saya juga membuat **ItemCard** yang berisi tombol-tombol dengan ikon, dan menambahkan **SnackBar** sebagai umpan balik saat tombol ditekan. Setelah menyusun tampilan aplikasi, saya menjalankan **flutter analyze** untuk memastikan tidak ada masalah dalam proyek.
+
+---
+
+## Tugas 8
+
+### 1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+
+**`const`** di Flutter digunakan untuk mendeklarasikan widget atau objek yang tidak berubah dan dapat dibangun pada waktu kompilasi, yang memungkinkan Flutter untuk melakukan optimasi dengan memanfaatkan instance yang sudah ada. Keuntungan utama dari penggunaan `const` adalah **mengurangi penggunaan memori** karena objek yang sama dapat digunakan berulang kali tanpa perlu membuat instance baru.
+
+**Kapan sebaiknya menggunakan `const`:**
+- Ketika Anda mendefinisikan widget yang nilainya tetap dan tidak berubah selama siklus hidup aplikasi (misalnya, widget teks, ikon, dan warna yang tidak berubah).
+- Untuk meningkatkan kinerja dan efisiensi memori.
+
+**Kapan tidak digunakan:**
+- Jika nilai atau widget tersebut bergantung pada data yang berubah selama runtime, maka `const` tidak dapat digunakan.
+
+### 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+- **Column**: Digunakan untuk menyusun elemen secara vertikal (dari atas ke bawah).
+  
+  **Contoh Column**:
+  ```dart
+  Column(
+    children: [
+      Text('Item 1'),
+      Text('Item 2'),
+      Text('Item 3'),
+    ],
+  )
+  ```
+
+- **Row**: Digunakan untuk menyusun elemen secara horizontal (dari kiri ke kanan).
+  
+  **Contoh Row**:
+  ```dart
+  Row(
+    children: [
+      Text('Item 1'),
+      Text('Item 2'),
+      Text('Item 3'),
+    ],
+  )
+  ```
+
+**Perbandingan**:
+- **Column** mengatur elemen dalam arah vertikal, sementara **Row** mengatur elemen dalam arah horizontal. Keduanya berguna untuk menyusun widget berdasarkan kebutuhan tata letak.
+
+### 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Pada halaman formulir yang saya buat, saya menggunakan beberapa elemen input seperti:
+- **TextFormField** untuk menerima input teks seperti nama produk, deskripsi produk, dan informasi lainnya.
+- **Validator** untuk memastikan input yang dimasukkan valid, seperti memastikan nilai angka tidak negatif dan panjang teks tidak melebihi batas yang ditentukan.
+
+Elemen input Flutter lainnya yang dapat digunakan, tetapi tidak digunakan dalam tugas ini, antara lain:
+- **Checkbox**: Untuk memilih pilihan ya/tidak.
+- **Radio**: Untuk memilih satu opsi dari beberapa pilihan.
+- **Switch**: Untuk memilih antara dua nilai biner.
+
+### 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Saya mengatur tema aplikasi dengan menggunakan widget **MaterialApp** dan **ThemeData**, yang memungkinkan saya menyesuaikan palet warna utama dan sekunder dengan **ColorScheme**. Tema ini diterapkan ke seluruh aplikasi, menjaga konsistensi tampilan dan nuansa UI. Di dalam aplikasi, saya menggunakan **useMaterial3** untuk mengaktifkan desain material terbaru, yang memperbarui komponen UI seperti tombol, teks, dan ikon.
+
+### 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+Navigasi dilakukan dengan menggunakan **Navigator.push()** untuk memindahkan pengguna dari satu halaman ke halaman lain. Misalnya, ketika pengguna menekan tombol di halaman utama, aplikasi akan mengarahkan pengguna ke halaman formulir untuk menambah produk baru. Navigasi ini diimplementasikan dengan menggunakan **MaterialPageRoute**, yang memungkinkan untuk mendorong halaman baru ke dalam tumpukan navigasi aplikasi. Untuk drawer, saya menggunakan **Navigator.push** untuk mengarahkan pengguna ke halaman lain, seperti halaman utama atau halaman tambah item.

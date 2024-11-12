@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:local_finds/widgets/left_drawer.dart';
+import 'package:local_finds/screens/product_form.dart'; 
 
 class MyHomePage extends StatelessWidget {
+  final String npm = '2306165856'; 
+  final String name = 'Adinda Maharani Wardhana'; 
+  final String className = 'PBP C'; 
+
   MyHomePage({super.key});
-  final String npm = '2306165856';
-  final String name = 'Adinda Maharani Wardhana';
-  final String className = 'PBP C';
-  
+
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Daftar Produk", Icons.mood, Colors.blue[800] ?? Colors.blue),
-    ItemHomepage("Tambah Produk", Icons.add, Colors.green[800] ?? Colors.green),
-    ItemHomepage("Logout", Icons.logout, Colors.redAccent[700] ?? Colors.redAccent),
+    ItemHomepage("Lihat Daftar Produk", Icons.list),
+    ItemHomepage("Tambah Produk", Icons.add),
+    ItemHomepage("Logout", Icons.logout),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Local Finds',
           style: TextStyle(
@@ -25,6 +29,7 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -104,17 +109,19 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
   final String name;
   final IconData icon;
-  final Color color;
-  ItemHomepage(this.name, this.icon, this.color);
+
+  ItemHomepage(this.name, this.icon);
 }
 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
+
   const ItemCard(this.item, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: item.color,
+      color: Theme.of(context).colorScheme.secondary,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: () {
@@ -122,6 +129,15 @@ class ItemCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+
+          if (item.name == "Tambah Produk") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductFormPage(),  
+              ),
+            );
+          } 
         },
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -148,4 +164,3 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
-
