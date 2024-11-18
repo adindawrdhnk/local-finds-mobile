@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:local_finds/screens/menu.dart';
+import 'package:local_finds/screens/login.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,17 +9,24 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.indigo,
-        ).copyWith(secondary: Colors.indigo[900]),
-        useMaterial3: true,
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Local Finds!',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.indigo,
+          ).copyWith(secondary: Colors.indigo[900]),
+        ),
+        home: const LoginPage(),
       ),
-      home: MyHomePage(),
     );
   }
 }

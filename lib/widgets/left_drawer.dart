@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:local_finds/screens/menu.dart';
 import 'package:local_finds/screens/product_form.dart';
+import 'package:local_finds/screens/list_product_entry.dart';
+
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -49,6 +51,16 @@ class LeftDrawer extends StatelessWidget {
                 ),
               );
             },
+          ),
+          ListTile(
+              leading: const Icon(Icons.add_reaction_rounded),
+              title: const Text('Daftar Product'),
+              onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ProductPage()),
+                  );
+              },
           ),
           ListTile(
             leading: const Icon(Icons.mood),
