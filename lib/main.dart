@@ -20,11 +20,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Local Finds!',
         theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.indigo,
-          ).copyWith(secondary: Colors.indigo[900]),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue, 
+        ).copyWith(
+          secondary: Colors.green.shade700, 
         ),
+      ),
+
         home: const LoginPage(),
       ),
     );

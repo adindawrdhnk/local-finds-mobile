@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:local_finds/screens/menu.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -19,8 +21,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   double _rating = 0;
   double _discount = 0;
 
-@override
-Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
@@ -189,7 +191,7 @@ Widget build(BuildContext context) {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     onChanged: (String? value) {
                       setState(() {
                         _rating = double.tryParse(value ?? '0') ?? 0;
@@ -224,7 +226,7 @@ Widget build(BuildContext context) {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     onChanged: (String? value) {
                       setState(() {
                         _discount = double.tryParse(value ?? '0') ?? 0;
@@ -259,69 +261,69 @@ Widget build(BuildContext context) {
                           Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      onPressed: () async {
+                     onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          // Kirim data ke backend Django
-                          final response = await request.postJson(
-                            "http://127.0.0.1:8000/create-product/",
-                            {
-                              'name': _name,
-                              'price': _price,
-                              'description': _description,
-                              'stock': _stock,
-                              'origin': _origin,
-                              'rating': _rating,
-                              'discount': _discount,
-                            },
-                          );
-
-                          // Tampilkan dialog sesuai respons dari Django
-                          if (response['status'] == 'success') {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: const Text('Produk berhasil tersimpan'),
-                                  content: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Nama Produk: $_name'),
-                                        Text('Harga Produk: Rp$_price'),
-                                        Text('Deskripsi Produk: $_description'),
-                                        Text('Jumlah Stok: $_stock'),
-                                        Text('Asal Produk: $_origin'),
-                                        Text('Rating Produk: $_rating/5'),
-                                        Text('Diskon Produk: $_discount%'),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      child: const Text('OK'),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        _formKey.currentState!.reset();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
+                            // Kirim ke Django dan tunggu respons
+                            
+                            final response = await request.postJson(
+                          "http://127.0.0.1:8000/create-flutter/",
+                          jsonEncode(<String, String>{
+                                    'name': _name,
+                                    'price': _price.toString(),
+                                    'description': _description,
+                                    'stock': _stock.toString(),
+                                    'origin': _origin,
+                                    'rating': _rating.toString(),
+                                    'discount': _discount.toString(),      
+                                }),
                             );
-                          } else {
-                            // Tampilkan pesan kesalahan jika gagal
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Gagal menyimpan produk. Silakan coba lagi."),
-                              ),
-                            );
-                          }
+                            if (context.mounted) {
+                                if (response['status'] == 'success') {
+                                    showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text('Produk berhasil tersimpan'),
+                                        content: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text('Nama Produk: $_name'),
+                                              Text('Harga Produk: Rp$_price'),
+                                              Text('Deskripsi Produk: $_description'),
+                                              Text('Jumlah Stok: $_stock'),
+                                              Text('Asal Produk: $_origin'),
+                                              Text('Rating Produk: $_rating/5'),
+                                              Text('Diskon Produk: $_discount%'),
+                                            ],
+                                          ),
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text('OK'),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              _formKey.currentState!.reset();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                        content:
+                                            Text("Terdapat kesalahan, silakan coba lagi."),
+                                    ));
+                                }
+                            }
                         }
-                      },
-                      child: const Text(
-                        "Save",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                    },
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(color: Colors.white),
+                   ),
                     ),
                   ),
                 ),

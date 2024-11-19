@@ -59,7 +59,7 @@ class _ProductPageState extends State<ProductPage> {
                   margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   padding: const EdgeInsets.all(20.0),
                   child: Card(
-                    color: Colors.blue.shade50, // Warna latar belakang Card
+                    color: const Color.fromARGB(255, 135, 205, 255), // Warna latar belakang Card
                     elevation: 6,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),

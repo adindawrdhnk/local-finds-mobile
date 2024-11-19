@@ -53,7 +53,7 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-              leading: const Icon(Icons.add_reaction_rounded),
+              leading: const Icon(Icons.shopping_bag_rounded),
               title: const Text('Daftar Product'),
               onTap: () {
                   Navigator.push(
@@ -63,7 +63,7 @@ class LeftDrawer extends StatelessWidget {
               },
           ),
           ListTile(
-            leading: const Icon(Icons.mood),
+            leading: const Icon(Icons.add_shopping_cart),
             title: const Text('Tambah Product'),
             onTap: () {
               Navigator.push(
